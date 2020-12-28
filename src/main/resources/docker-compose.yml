@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+    naurandir-discord-bot:
+        image: naurandir/discord-bot-java:latest
+        container_name: naurandir-discord-bot
+        volumes:
+            - ./log:/tmp/log
+        ports:
+            - 7090:7090
+        networks:
+            - database_default
+
+networks:
+  database_default:
+    external:
+      name: database_default
