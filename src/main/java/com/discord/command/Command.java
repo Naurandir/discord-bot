@@ -9,4 +9,5 @@ import reactor.core.publisher.Mono;
  */
 public interface Command {
     Mono<Void> execute(MessageCreateEvent event);
+    String getCommandWord();
 }

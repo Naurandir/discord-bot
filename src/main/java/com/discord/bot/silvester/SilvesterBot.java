@@ -46,7 +46,7 @@ public class SilvesterBot {
                 .toFuture()
                 .get();
         
-        generatecommands(client);
+        generateCommands(client);
         log.info("init: starting up bot done");
     }
     
@@ -60,10 +60,10 @@ public class SilvesterBot {
     /**
      * create commands that are used in this bot and add them
      */
-    private void generatecommands(GatewayDiscordClient client) {
+    private void generateCommands(GatewayDiscordClient client) {
         commandGenerators.forEach(entry -> 
-            commands.put(entry.getCommandName(), entry.getCommand(client)));
-        commandGenerators.forEach(entry -> log.info("createCommands: created command [{}]", entry.getCommandName()));
+            commands.put(entry.getCommand().getCommandWord(), entry.getCommand()));
+        commandGenerators.forEach(entry -> log.info("createCommands: created command [{}]", entry.getCommand().getCommandWord()));
         
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .filter(event -> event.getMessage().getAuthor().isPresent() && !event.getMessage().getAuthor().get().isBot()) // ignore bots
